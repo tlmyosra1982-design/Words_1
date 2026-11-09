@@ -1,0 +1,1572 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<meta name="theme-color" content="#100b18">
+<title>YOSRA | Saving Nature</title>
+
+<style>
+:root{
+--bg:#100b18;
+--panel:#21172d;
+--panel2:#30213e;
+--purple:#a77be0;
+--gold:#e8c77b;
+--cream:#fff5e8;
+--muted:#c4b5ce;
+--green:#8ed5ad;
+--red:#ed8996;
+}
+
+*{box-sizing:border-box}
+
+body{
+margin:0;
+padding:14px;
+background:var(--bg);
+color:var(--cream);
+font-family:Tahoma,Arial,sans-serif;
+min-height:100vh;
+}
+
+header{
+text-align:center;
+padding:22px 5px;
+}
+
+.brand{
+letter-spacing:6px;
+color:var(--gold);
+font-size:14px;
+}
+
+h1{
+font-size:25px;
+margin:13px 0 7px;
+}
+
+.subtitle{
+color:var(--muted);
+font-size:13px;
+}
+
+.stats{
+display:flex;
+justify-content:center;
+gap:8px;
+flex-wrap:wrap;
+margin:18px 0;
+}
+
+.stat{
+background:var(--panel);
+border:1px solid #493558;
+border-radius:13px;
+padding:10px 15px;
+color:var(--muted);
+font-size:12px;
+}
+
+.stat b{
+display:block;
+color:var(--gold);
+font-size:19px;
+margin-top:5px;
+}
+
+main{
+max-width:680px;
+margin:auto;
+}
+
+nav{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:7px;
+margin-bottom:15px;
+}
+
+button{
+font-family:inherit;
+cursor:pointer;
+}
+
+nav button,
+.btn{
+background:var(--panel);
+border:1px solid #59436d;
+color:var(--cream);
+border-radius:12px;
+padding:12px 7px;
+font-size:13px;
+}
+
+nav button.active,
+.primary{
+background:linear-gradient(135deg,#76519b,#a77be0);
+border-color:var(--purple);
+color:white;
+}
+
+.panel{
+background:var(--panel);
+border:1px solid #493558;
+border-radius:20px;
+padding:17px;
+margin-bottom:14px;
+}
+
+.heading{
+color:var(--gold);
+font-size:17px;
+margin-bottom:14px;
+}
+
+.word-card{
+background:linear-gradient(145deg,#382448,#21172d);
+border:1px solid #73558e;
+border-radius:18px;
+padding:25px 12px;
+text-align:center;
+margin:14px 0;
+}
+
+.word{
+font-size:31px;
+font-weight:bold;
+color:var(--gold);
+direction:ltr;
+}
+
+.meaning{
+font-size:19px;
+margin:16px 0;
+line-height:1.9;
+}
+
+.definition{
+direction:ltr;
+text-align:center;
+line-height:1.9;
+color:#ded1e8;
+font-size:14px;
+margin:12px 0;
+}
+
+.counter{
+font-size:12px;
+color:var(--muted);
+margin:8px;
+}
+
+.tag{
+display:inline-block;
+background:#493258;
+color:#e8d4ff;
+border-radius:8px;
+padding:5px 10px;
+font-size:11px;
+margin:4px;
+direction:ltr;
+}
+
+.actions{
+display:flex;
+justify-content:center;
+gap:8px;
+flex-wrap:wrap;
+margin-top:13px;
+}
+
+.btn{
+padding:11px 14px;
+}
+
+.btn.gold{
+color:var(--gold);
+border-color:var(--gold);
+}
+
+.progress{
+height:7px;
+background:#392a46;
+border-radius:20px;
+overflow:hidden;
+margin:12px 0;
+}
+
+.progress div{
+height:100%;
+background:var(--gold);
+width:0%;
+transition:.3s;
+}
+
+.hidden{
+display:none!important;
+}
+
+input{
+width:100%;
+padding:14px;
+border-radius:12px;
+border:1px solid #654b79;
+background:#160f20;
+color:white;
+font-size:15px;
+outline:none;
+}
+
+input::placeholder{
+color:#a99bb5;
+}
+
+.word-list{
+display:grid;
+gap:8px;
+margin-top:12px;
+}
+
+.item{
+display:flex;
+align-items:center;
+justify-content:space-between;
+gap:10px;
+padding:12px;
+background:var(--panel2);
+border:1px solid #483455;
+border-radius:12px;
+}
+
+.item .content{
+flex:1;
+min-width:0;
+}
+
+.item .en{
+direction:ltr;
+text-align:left;
+font-weight:bold;
+color:var(--gold);
+font-size:16px;
+}
+
+.item .fa{
+font-size:12px;
+color:var(--muted);
+margin-top:5px;
+}
+
+.item .definition{
+text-align:left;
+font-size:12px;
+margin:5px 0;
+}
+
+.small-btn{
+border:1px solid #765994;
+color:#e5c9ff;
+background:#30213e;
+border-radius:9px;
+padding:9px 12px;
+}
+
+.option{
+width:100%;
+display:block;
+margin:9px 0;
+padding:14px;
+border-radius:12px;
+border:1px solid #634b75;
+background:#30213e;
+color:white;
+font-size:14px;
+}
+
+.option.correct{
+background:#24543e;
+border-color:var(--green);
+}
+
+.option.wrong{
+background:#632d3a;
+border-color:var(--red);
+}
+
+.feedback{
+text-align:center;
+min-height:28px;
+margin:12px;
+color:var(--gold);
+}
+
+footer{
+text-align:center;
+color:#8c7b99;
+font-size:11px;
+padding:20px;
+line-height:2;
+}
+
+button:disabled{
+opacity:.45;
+cursor:not-allowed;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="brand">Y O S R A</div>
+
+<h1>🌿 Saving Nature</h1>
+
+<div class="subtitle">
+VISION 1 · LESSON 1 · ENGLISH VOCABULARY
+</div>
+
+<div class="stats">
+
+<div class="stat">
+تعداد واژگان
+<b id="total">0</b>
+</div>
+
+<div class="stat">
+امتیاز
+<b id="score">0</b>
+</div>
+
+<div class="stat">
+یادگیری
+<b id="learned">0</b>
+</div>
+
+</div>
+
+</header>
+
+<main>
+
+<nav>
+
+<button class="active" onclick="showTab('cards',this)">
+📚 فلش‌کارت
+</button>
+
+<button onclick="showTab('list',this)">
+📖 فهرست لغات
+</button>
+
+<button onclick="showTab('quiz',this)">
+🏆 آزمون
+</button>
+
+</nav>
+
+
+<!-- =========================
+     FLASHCARDS
+========================= -->
+
+<section id="cards">
+
+<div class="panel">
+
+<div class="heading">
+✨ Vocabulary Learning
+</div>
+
+<div class="counter" id="counter">
+1
+</div>
+
+<div class="progress">
+<div id="cardProgress"></div>
+</div>
+
+<div class="word-card">
+
+<div class="word" id="word"></div>
+
+<div class="actions">
+
+<button class="btn primary"
+onclick="speak(current.word)">
+🔊 تلفظ انگلیسی
+</button>
+
+<button class="btn"
+onclick="speak(current.word)">
+🇺🇸 American Voice
+</button>
+
+</div>
+
+<div class="meaning" id="meaning"></div>
+
+<div class="definition" id="definition"></div>
+
+<div id="tags"></div>
+
+</div>
+
+
+<div class="actions">
+
+<button class="btn"
+onclick="previous()">
+❮ قبلی
+</button>
+
+<button class="btn gold"
+onclick="toggleMeaning()">
+نمایش / مخفی کردن معنی
+</button>
+
+<button class="btn primary"
+onclick="next()">
+بعدی ❯
+</button>
+
+</div>
+
+
+<div class="actions">
+
+<button class="btn"
+onclick="speak(current.definition)">
+🔊 شنیدن تعریف
+</button>
+
+<button class="btn"
+onclick="markLearned()">
+✓ یاد گرفتم
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     VOCABULARY LIST
+========================= -->
+
+<section id="list" class="hidden">
+
+<div class="panel">
+
+<div class="heading">
+📖 Vocabulary Dictionary
+</div>
+
+<input
+id="search"
+placeholder="جست‌وجوی واژه انگلیسی یا معنی فارسی..."
+oninput="renderList()">
+
+<div class="word-list" id="wordList"></div>
+
+</div>
+
+</section>
+
+
+<!-- =========================
+     QUIZ
+========================= -->
+
+<section id="quiz" class="hidden">
+
+<div class="panel">
+
+<div class="heading">
+🏆 Vocabulary Challenge
+</div>
+
+<p style="color:var(--muted);font-size:13px">
+معنی درست واژه را انتخاب کن.
+</p>
+
+<div class="progress">
+<div id="quizProgress"></div>
+</div>
+
+
+<div id="quizArea">
+
+<div class="word-card">
+
+<div class="counter" id="questionNumber"></div>
+
+<div class="word" id="questionWord"></div>
+
+<div class="actions">
+
+<button class="btn"
+onclick="speak(quizCurrent[0])">
+🔊 تلفظ واژه
+</button>
+
+</div>
+
+</div>
+
+<div id="options"></div>
+
+<div class="feedback" id="feedback"></div>
+
+<button
+class="btn primary"
+id="nextQuestion"
+onclick="nextQuestion()"
+style="width:100%">
+سؤال بعدی ❯
+</button>
+
+</div>
+
+
+<div id="quizResult"
+class="hidden"
+style="text-align:center;padding:25px">
+
+<h2 style="color:var(--gold)">
+🎉 آفرین!
+</h2>
+
+<p id="resultText"></p>
+
+<button
+class="btn primary"
+onclick="startQuiz()">
+شروع دوباره
+</button>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+YOSRA MASTER ENGINE · V1.0.0<br>
+SAVING NATURE · LESSON 01
+
+</footer>
+
+
+<script>
+
+/* =====================================================
+   YOSRA VOCABULARY DATABASE
+   VISION 1 · LESSON 1 · SAVING NATURE
+
+   IMPORTANT CORRECTION:
+   former = قبلی، پیشین
+===================================================== */
+
+const data = [
+
+["add",
+"اضافه کردن",
+"SYN join, attend, connect"],
+
+["a few",
+"تعداد کمی، اندک",
+"not many"],
+
+["alive",
+"زنده",
+"having life, not dead ANT dead"],
+
+["amazing",
+"شگفت‌انگیز، حیرت‌انگیز",
+"very surprising that makes you feel pleasure SYN astonishing, breathtaking"],
+
+["among",
+"در میان، در بین",
+"in the middle of something"],
+
+["average",
+"میانگین، متوسط",
+"SYN norm, medium"],
+
+["appropriate",
+"مناسب",
+"SYN suitable, to the point, proper ANT inappropriate"],
+
+["around",
+"اطراف، دوروبر",
+"SYN surrounding"],
+
+["attention",
+"توجه",
+"the act of listening to or looking at carefully SYN concentration, notice, awareness"],
+
+["base on",
+"مبتنی بر، بر اساس",
+"based upon"],
+
+["bear",
+"خرس / تحمل کردن",
+"Verb: tolerate   Noun: a kind of animal"],
+
+["boring",
+"کسل‌کننده",
+"SYN exhausted, uninteresting"],
+
+["bring",
+"آوردن",
+"SYN to take, lead, or carry"],
+
+["careful",
+"دقیق، مراقب",
+"SYN attentive, cautious ANT careless"],
+
+["change into",
+"تبدیل شدن به",
+"to alter the content or form of"],
+
+["cheetah",
+"یوزپلنگ",
+"a long-legged spotted swift-moving cat"],
+
+["common",
+"رایج، متداول، مشترک",
+"SYN ordinary, regular, conventional"],
+
+["complete",
+"کامل کردن، کامل",
+"SYN finish, end"],
+
+["comprehension",
+"درک، فهم",
+"SYN understanding"],
+
+["consider",
+"فکر کردن، ملاحظه کردن",
+"SYN think, believe"],
+
+["country",
+"کشور",
+"a large geographic region defined by political, natural, or cultural boundaries"],
+
+["cut down",
+"قطع کردن",
+"to make sth fall down by cutting it from the base: SYN fall"],
+
+["danger",
+"خطر",
+"SYN peril"],
+
+["destroy",
+"از بین بردن، ویران کردن",
+"SYN ruin, demolish, knock ANT make, build, construct"],
+
+["die out",
+"منقرض شدن",
+"to stop existing, to become extinct"],
+
+["divide",
+"تقسیم کردن، تقسیم",
+"SYN partition"],
+
+["drought",
+"خشکسالی",
+"when there is not enough water to live"],
+
+["dry",
+"خشک",
+"ANT wet"],
+
+["earth",
+"زمین",
+"third planet of solar system"],
+
+["endangered",
+"در معرض خطر",
+"animals or plants that may not exist soon because they are few SYN unsafe, at risk, unprotected"],
+
+["enough",
+"کافی",
+"SYN sufficient, adequate"],
+
+["especially (specially)",
+"مخصوصاً، به ویژه",
+"SYN particularly"],
+
+["exercise",
+"تمرین، ورزش",
+"physical or mental activity SYN activity"],
+
+["expression",
+"حالت، اصطلاح",
+"SYN communication, telling, utterance"],
+
+["former",
+"قبلی، پیشین",
+"SYN previous, prior"],
+
+["follow",
+"پیروی کردن، دنبال کردن",
+"SYN go after"],
+
+["forest",
+"جنگل",
+"a large area of land that is thickly covered with trees"],
+
+["forestation",
+"جنگل‌کاری",
+"ANT deforestation"],
+
+["free",
+"آزاد، رایگان",
+"not containing or taking in, without"],
+
+["future",
+"آینده",
+"the time that will come after the present"],
+
+["goat",
+"بز",
+"an animal like a sheep that has horn"],
+
+["hardworking",
+"سخت‌کوش",
+"putting a lot of effort into a job and doing it well SYN industrious, diligent"],
+
+["hear",
+"شنیدن",
+"To listen to sb/sth"],
+
+["helpful",
+"مفید، کاربردی",
+"SYN useful"],
+
+["hope",
+"امید، امیدوار بودن",
+"an optimistic sense of feeling that events will turn out well"],
+
+["hopefully",
+"امیدوارانه",
+"used to express what you hope will happen"],
+
+["human",
+"انسان",
+"a person rather than an animal or a machine SYN person"],
+
+["hunt",
+"شکار کردن",
+"To chase and kill an animal"],
+
+["hunter",
+"شکارچی",
+"A person or an animal that tries to kill animals"],
+
+["hurt",
+"آسیب رساندن",
+"to cause physical pain to sb SYN harm, damage"],
+
+["idea",
+"ایده، نظر",
+"SYN notion, thought, opinion"],
+
+["identify",
+"تشخیص دادن",
+"SYN recognize, distinguish"],
+
+["increase",
+"افزایش دادن، افزایش شدن",
+"ANT decrease SYN grow, boost, enlarge, raise, enhance"],
+
+["injured",
+"مجروح، جراحت",
+"SYN damaged"],
+
+["instead",
+"در عوض، به‌جای",
+"as an alternative or substitute"],
+
+["interested in",
+"علاقه‌مند بودن به",
+"SYN keen on, fond of"],
+
+["jungle",
+"جنگل",
+"an area of tropical forest where trees and plants grow thickly"],
+
+["kill",
+"کشتن",
+"to cause to die"],
+
+["lake",
+"دریاچه",
+"fresh or salt water that is surrounded on all sides by land"],
+
+["leave",
+"ترک کردن، رها کردن",
+"SYN quit, give up, abandon"],
+
+["lifespan",
+"طول عمر",
+"number of years that an animal or plant is expected to live"],
+
+["lose",
+"گم کردن، از دست دادن، باختن",
+"SYN miss"],
+
+["low",
+"کم، پایین، اندک",
+"SYN small, little, short"],
+
+["mean",
+"معنی دادن",
+"SYN denote, express, imply, represent, signify"],
+
+["mountain",
+"کوه، کوهستان",
+"large elevated area on the earth's surface that rises to a summit"],
+
+["movie",
+"فیلم",
+"SYN film"],
+
+["national",
+"ملی",
+"connected with a particular nation"],
+
+["nature",
+"طبیعت",
+"all the plants, animals and things that exist in the universe that are not made by people"],
+
+["natural",
+"طبیعی",
+"existing in nature ANT unnatural, artificial, abnormal"],
+
+["near",
+"نزدیک",
+"SYN close ANT far, remote"],
+
+["need",
+"نیاز داشتن",
+"to require sth/sb SYN require"],
+
+["nowadays",
+"امروزه",
+"at the present time"],
+
+["only",
+"فقط، تنها",
+"SYN just, mere"],
+
+["pain",
+"درد",
+"mental or emotional suffering SYN ache, hurt"],
+
+["pattern",
+"الگو، ساختار",
+"SYN method, arrangement"],
+
+["pay attention",
+"توجه کردن",
+"notice, watch carefully"],
+
+["plain",
+"دشت",
+"a large area of land"],
+
+["plan",
+"نقشه، برنامه",
+"SYN method, program"],
+
+["plant",
+"اسم: گیاه / فعل: کاشتن",
+"Verb: to put seeds or plants in the ground. Noun: a living organism of the vegetable group"],
+
+["plural",
+"جمع",
+"SYN many, plenty ANT singular"],
+
+["poem",
+"شعر",
+"SYN lyric, verse"],
+
+["proper",
+"مناسب",
+"SYN suitable, appropriate, fit"],
+
+["protect",
+"حفاظت کردن، نگهداری کردن",
+"to make sure that sb/sth is not harmed, injured, damaged SYN guard, save"],
+
+["put out",
+"خاموش کردن",
+"to stop sth from burning or shining SYN extinguish"],
+
+["recently",
+"اخیراً",
+"SYN lately, newly, lately, currently"],
+
+["relative",
+"خویشاوند، نسبی",
+"a person who is in the same family SYN relation"],
+
+["report",
+"گزارش، گزارش دادن",
+"SYN record"],
+
+["right",
+"درست، حق",
+"SYN correct, true, good"],
+
+["road",
+"جاده",
+"a long way for cars to move SYN way, path"],
+
+["rule",
+"قانون",
+"SYN law"],
+
+["safe",
+"ایمن",
+"protected from any danger or harm SYN secure ANT unsafe"],
+
+["save",
+"ذخیره کردن، نجات دادن",
+"SYN rescue, keep, take care, look after, defend"],
+
+["schedule",
+"برنامه",
+"SYN plan, program"],
+
+["simple",
+"ساده",
+"not complicated, easy to understand or do SYN easy, clear"],
+
+["singular",
+"مفرد، تک",
+"SYN single, one"],
+
+["soon",
+"زود",
+"SYN early ANT late"],
+
+["stay",
+"ماندن",
+"SYN remain"],
+
+["take care of",
+"مراقبت کردن",
+"to care for sb/sth/yourself; to be careful about sth SYN protect"],
+
+["together",
+"با هم",
+"with each other"],
+
+["trip",
+"سفر",
+"SYN journey, travel"],
+
+["unscramble",
+"نظم دادن، رمزگشایی کردن",
+"to make orderly again; eliminate confusion from"],
+
+["useful",
+"مفید، کاربردی",
+"SYN helpful, effective"],
+
+
+/* ==================================
+   ADDITIONAL VOCABULARY
+================================== */
+
+["voluntary",
+"داوطلبانه",
+"done willingly, not because you are forced. ANT compulsory"],
+
+["volunteer",
+"داوطلب",
+"someone who does a job willingly"],
+
+["weekend",
+"آخر هفته",
+"the end of the week"],
+
+["wild",
+"وحشی",
+"living or growing in natural conditions; not kept in a house or on a farm"],
+
+["wildlife",
+"حیات وحش",
+"animals and plants that grow in natural condition"],
+
+["wolf",
+"گرگ",
+"a wild animal of the dog family"],
+
+["wonderful",
+"شگفت‌آور، حیرت‌انگیز",
+"very good, pleasant or enjoyable. SYN excellent, fantastic, great"],
+
+["world",
+"جهان، هستی، گیتی",
+"the universe and everything that exists"],
+
+["zookeeper",
+"نگهبان باغ وحش",
+"someone who takes care of animals in a zoo"]
+
+];
+
+
+/* =====================================================
+   GENERAL SETTINGS
+===================================================== */
+
+let index = 0;
+let current = null;
+let revealed = true;
+
+let score = 0;
+let learned = new Set();
+
+document.getElementById("total").textContent = data.length;
+
+
+/* =====================================================
+   ENGLISH PRONUNCIATION
+===================================================== */
+
+function speak(text){
+
+if(!("speechSynthesis" in window)){
+
+alert("مرورگر شما از تلفظ صوتی پشتیبانی نمی‌کند.");
+
+return;
+}
+
+speechSynthesis.cancel();
+
+const u = new SpeechSynthesisUtterance(text);
+
+u.lang = "en-US";
+u.rate = .82;
+u.pitch = 1;
+
+const voices = speechSynthesis.getVoices();
+
+const voice =
+voices.find(v => v.lang === "en-US") ||
+voices.find(v => v.lang.startsWith("en"));
+
+if(voice){
+u.voice = voice;
+}
+
+speechSynthesis.speak(u);
+}
+
+
+/* =====================================================
+   PARSE WORD
+===================================================== */
+
+function parseWord(item){
+
+return {
+
+word:item[0],
+fa:item[1],
+definition:item[2]
+
+};
+
+}
+
+
+/* =====================================================
+   UPDATE FLASHCARD
+===================================================== */
+
+function updateCard(){
+
+current = parseWord(data[index]);
+
+document.getElementById("word").textContent =
+current.word;
+
+document.getElementById("meaning").textContent =
+current.fa;
+
+document.getElementById("definition").textContent =
+current.definition;
+
+document.getElementById("counter").textContent =
+(index + 1) + " / " + data.length;
+
+document.getElementById("cardProgress").style.width =
+((index + 1) / data.length * 100) + "%";
+
+
+const tags = [];
+
+if(/\bSYN\b/i.test(current.definition)){
+
+tags.push(
+'<span class="tag">SYN · Synonym</span>'
+);
+
+}
+
+if(/\bANT\b/i.test(current.definition)){
+
+tags.push(
+'<span class="tag">ANT · Antonym</span>'
+);
+
+}
+
+document.getElementById("tags").innerHTML =
+tags.join("");
+
+
+document.getElementById("meaning")
+.classList.toggle("hidden", !revealed);
+
+}
+
+
+/* =====================================================
+   NEXT / PREVIOUS
+===================================================== */
+
+function next(){
+
+index = (index + 1) % data.length;
+
+revealed = true;
+
+updateCard();
+
+}
+
+
+function previous(){
+
+index =
+(index - 1 + data.length) % data.length;
+
+revealed = true;
+
+updateCard();
+
+}
+
+
+/* =====================================================
+   SHOW / HIDE MEANING
+===================================================== */
+
+function toggleMeaning(){
+
+revealed = !revealed;
+
+document.getElementById("meaning")
+.classList.toggle("hidden", !revealed);
+
+}
+
+
+/* =====================================================
+   MARK LEARNED
+===================================================== */
+
+function markLearned(){
+
+learned.add(current.word);
+
+document.getElementById("learned")
+.textContent = learned.size;
+
+next();
+
+}
+
+
+/* =====================================================
+   NAVIGATION
+===================================================== */
+
+function showTab(id, btn){
+
+["cards","list","quiz"].forEach(x => {
+
+document.getElementById(x)
+.classList.add("hidden");
+
+});
+
+document.getElementById(id)
+.classList.remove("hidden");
+
+
+document.querySelectorAll("nav button")
+.forEach(x => {
+
+x.classList.remove("active");
+
+});
+
+btn.classList.add("active");
+
+
+if(id === "list"){
+
+renderList();
+
+}
+
+if(id === "quiz" && !quizStarted){
+
+startQuiz();
+
+}
+
+}
+
+
+/* =====================================================
+   VOCABULARY DICTIONARY
+===================================================== */
+
+function renderList(){
+
+const q =
+document.getElementById("search")
+.value
+.trim()
+.toLowerCase();
+
+
+const filtered = data.filter(x =>
+
+(x[0] + " " + x[1] + " " + x[2])
+.toLowerCase()
+.includes(q)
+
+);
+
+
+const list =
+document.getElementById("wordList");
+
+list.innerHTML = "";
+
+
+filtered.forEach(x => {
+
+const item =
+document.createElement("div");
+
+item.className = "item";
+
+
+const content =
+document.createElement("div");
+
+content.className = "content";
+
+
+const en =
+document.createElement("div");
+
+en.className = "en";
+
+en.textContent = x[0];
+
+
+const fa =
+document.createElement("div");
+
+fa.className = "fa";
+
+fa.textContent = x[1];
+
+
+const def =
+document.createElement("div");
+
+def.className = "definition";
+
+def.textContent = x[2];
+
+
+content.append(en, fa, def);
+
+
+const btn =
+document.createElement("button");
+
+btn.className = "small-btn";
+
+btn.textContent = "🔊";
+
+btn.onclick = () => speak(x[0]);
+
+
+item.append(content, btn);
+
+list.appendChild(item);
+
+});
+
+
+if(!filtered.length){
+
+list.textContent =
+"واژه‌ای پیدا نشد.";
+
+}
+
+}
+
+
+/* =====================================================
+   FOUR OPTION QUIZ
+===================================================== */
+
+let quizItems = [];
+let quizIndex = 0;
+let quizScore = 0;
+let quizCurrent = null;
+let answered = false;
+let quizStarted = false;
+
+
+function shuffle(arr){
+
+return [...arr].sort(() =>
+Math.random() - .5
+);
+
+}
+
+
+function startQuiz(){
+
+quizItems = shuffle(data);
+
+quizIndex = 0;
+
+quizScore = 0;
+
+quizStarted = true;
+
+document.getElementById("quizArea")
+.classList.remove("hidden");
+
+document.getElementById("quizResult")
+.classList.add("hidden");
+
+makeQuestion();
+
+}
+
+
+/* =====================================================
+   MAKE QUESTION
+===================================================== */
+
+function makeQuestion(){
+
+answered = false;
+
+quizCurrent =
+quizItems[quizIndex];
+
+
+document.getElementById("questionWord")
+.textContent =
+quizCurrent[0];
+
+
+document.getElementById("questionNumber")
+.textContent =
+`سؤال ${quizIndex + 1} از ${quizItems.length}`;
+
+
+document.getElementById("quizProgress")
+.style.width =
+(quizIndex / quizItems.length * 100)
++ "%";
+
+
+document.getElementById("feedback")
+.textContent = "";
+
+
+const nextBtn =
+document.getElementById("nextQuestion");
+
+nextBtn.disabled = true;
+
+
+const wrong =
+shuffle(
+data.filter(x =>
+x[0] !== quizCurrent[0]
+)
+).slice(0,3);
+
+
+const choices =
+shuffle([quizCurrent, ...wrong]);
+
+
+const options =
+document.getElementById("options");
+
+options.innerHTML = "";
+
+
+choices.forEach(x => {
+
+const b =
+document.createElement("button");
+
+b.className = "option";
+
+b.textContent = x[1];
+
+b.onclick = () =>
+answer(b,x);
+
+options.appendChild(b);
+
+});
+
+}
+
+
+/* =====================================================
+   ANSWER
+===================================================== */
+
+function answer(btn,x){
+
+if(answered){
+return;
+}
+
+answered = true;
+
+
+document.querySelectorAll(".option")
+.forEach(b => {
+
+if(b.textContent === quizCurrent[1]){
+
+b.classList.add("correct");
+
+}
+
+});
+
+
+if(x[0] === quizCurrent[0]){
+
+quizScore++;
+
+score++;
+
+document.getElementById("score")
+.textContent = score;
+
+document.getElementById("feedback")
+.textContent =
+"✓ عالی! پاسخ درست است.";
+
+}else{
+
+btn.classList.add("wrong");
+
+document.getElementById("feedback")
+.textContent =
+"پاسخ درست: " + quizCurrent[1];
+
+}
+
+
+document.getElementById("nextQuestion")
+.disabled = false;
+
+}
+
+
+/* =====================================================
+   NEXT QUESTION
+===================================================== */
+
+function nextQuestion(){
+
+if(!answered){
+return;
+}
+
+quizIndex++;
+
+
+if(quizIndex >= quizItems.length){
+
+document.getElementById("quizArea")
+.classList.add("hidden");
+
+document.getElementById("quizResult")
+.classList.remove("hidden");
+
+
+document.getElementById("resultText")
+.textContent =
+`شما ${quizScore} پاسخ درست از ${quizItems.length} سؤال داشتید.`;
+
+document.getElementById("quizProgress")
+.style.width = "100%";
+
+}else{
+
+makeQuestion();
+
+}
+
+}
+
+
+/* =====================================================
+   INITIALIZATION
+===================================================== */
+
+updateCard();
+
+
+if("speechSynthesis" in window){
+
+speechSynthesis.getVoices();
+
+}
+
+</script>
+
+</body>
+</html>
